@@ -1,7 +1,17 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+DESCRIPCION:
+MODULO4
+Programa de Floyd 
+-Problema-de-los-caminos-mas-cortos-entre-todos-los-pares-
+-Figura 6.14 y 6.38
+VALIDACIONES:
+-Validar cuando no hay llegada a un nodo
+-Validar si no se han ingresado datos-
+-Validar si se ingresan nodos negativos
+FECHA:
+18/05/20
+EQUIPO:
+FCA
  */
 package floyd;
 import java.util.Scanner;
@@ -16,7 +26,8 @@ public class Metodos {
         void costosOriginales(){
             System.out.println("¿Cuantos nodos tiene el grafo?");
             n = leer.nextInt();
-            
+            System.out.println("Representacion del infinito\n" +
+                    "--1000--");
             for (int i = 0; i < n; i++) {
                 for (int j = 0; j < n; j++) {
                     System.out.println("Teclea el costo del nodo " + i + " al " + j);
@@ -43,6 +54,7 @@ public class Metodos {
                     for (int j = 0; j < n; j++) {
                         if (a[i][k] + a[k][j] < a[i][j]) {
                             a[i][j] = a[i][k] + a[k][j];
+                            p[i][j] = k;
                         }
                     }
                 }
@@ -53,7 +65,7 @@ public class Metodos {
             System.out.println("Matriz C");
             for (int i = 0; i < n; i++) {
                 for (int j = 0; j < n; j++) {
-                    System.out.println(c[i][j] + " ");
+                    System.out.print(c[j][i] + " ");
                 }
                 System.out.println(" ");
             }
@@ -63,7 +75,7 @@ public class Metodos {
             System.out.println("Matriz A");
             for (int i = 0; i < n; i++) {
                 for (int j = 0; j < n; j++) {
-                    System.out.println(a[i][j] + " ");
+                    System.out.print(a[j][i] + " ");
                 }
                 System.out.println(" ");
             }
@@ -73,7 +85,7 @@ public class Metodos {
             System.out.println("Matriz p");
             for (int i = 0; i < n; i++) {
                 for (int j = 0; j < n; j++) {
-                    System.out.println(p[i][j] +" ");
+                    System.out.print(p[j][i] +" ");
                 }
                 System.out.println(" ");
             }
@@ -86,7 +98,7 @@ public class Metodos {
             if (k != -1) {
                 
                 camino(o2, k);
-                System.out.println(k);
+                System.out.print(k);
                 camino(k, d2);
             }
         }
